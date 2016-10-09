@@ -1,0 +1,8 @@
+.DS_Store
+.vscode
+*.jpg
+collage
+input
+node_modules
+perl
+sample-pics-original
