@@ -6,7 +6,8 @@ var utils = require('./lib/utils');
 
 var taskArr = [
     require('./lib/resize-pictures'),
-    require('./lib/add-copyright')
+    require('./lib/add-copyright'),
+    require('./lib/crop-image')
 ];
 
 var performTaskOnFiles = (task) => {
@@ -15,7 +16,7 @@ var performTaskOnFiles = (task) => {
         if (err) {
             utils.handlePromptError();
         } else {
-            imgPath = 'input';
+            imgPath = result.path || 'input';
             fs.readdir(imgPath, (err, data) => {
                 if (err) {
                     console.log('err', err);
@@ -36,13 +37,13 @@ var performTaskOnFiles = (task) => {
 var getTask = () => {
     promptLib.get({
         name: 'task',
-        message: '\n1: Resize Pictures\n2: Add Copyright\n3: Make Collage\nEnter task number'
+        message: '\n1: Resize Pictures\n2: Add Copyright\n3: Crop Image\n4: Make Collage\nEnter task number'
     }, (err, result) => {
         var task = result.task;
         if (err) {
             utils.handlePromptError();
         } else {
-            if (task !== '3') {
+            if (task !== '4') {
                 performTaskOnFiles(taskArr[task - 1]);
             } else {
                 return;
