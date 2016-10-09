@@ -24,10 +24,10 @@ var performTaskOnFiles = (task) => {
                     console.log('data', data);
                     return;
                 }
-                data.forEach((i) => {
-                    var fullPath = imgPath + '/' + i;
-                    if (utils.getExtension(i).toLowerCase() === 'jpg') {
-                        task(fullPath);
+                data.forEach((filename, index) => {
+                    var fullPath = imgPath + '/' + filename;
+                    if (utils.getExtension(filename).toLowerCase() === 'jpg') {
+                        task(fullPath, index);
                     }
                 });
             });
