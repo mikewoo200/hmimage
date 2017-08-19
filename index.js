@@ -5,7 +5,7 @@ var promptLib = require('prompt');
 var utils = require('./lib/utils');
 
 var taskArr = [
-    require('./lib/resize-pictures'),
+    // require('./lib/resize-pictures'),
     require('./lib/add-copyright'),
     require('./lib/crop-image'),
     require('./lib/add-frame')
@@ -38,18 +38,13 @@ var performTaskOnFiles = (task) => {
 var getTask = () => {
     promptLib.get({
         name: 'task',
-        message: '\n1: Resize Pictures\n2: Add Copyright\n3: Crop Image\n4: Add Frame\n5: Make Collage\nEnter task number'
+        message: '\n1: Add Copyright\n2: Crop Image\n3: Add Frame\nEnter task number'
     }, (err, result) => {
         var task = result.task;
         if (err) {
             utils.handlePromptError();
         } else {
-            if (task !== '5') {
-                performTaskOnFiles(taskArr[task - 1]);
-            } else {
-                return;
-                // require('./lib/make-collage')();
-            }
+            performTaskOnFiles(taskArr[task - 1]);
         }
     });
 };
